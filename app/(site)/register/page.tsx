@@ -52,7 +52,7 @@ const Register = () => {
                   name="userName"
                   type="text"
                   required
-                  value={data.name}
+                  value={data.userName}
                   onChange={(e) =>
                     setData({ ...data, userName: e.target.value })
                   }
