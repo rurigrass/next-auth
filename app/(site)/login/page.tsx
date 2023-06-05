@@ -1,6 +1,7 @@
 "use client";
-import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 type dataProps = {
@@ -9,9 +10,17 @@ type dataProps = {
 };
 
 const Login = () => {
+  const session = useSession();
+  const router = useRouter();
   const [data, setData] = useState<dataProps>({
     email: "",
     password: "",
+  });
+
+  useEffect(() => {
+    if (session?.status === "authenticated") {
+      router.push("/");
+    }
   });
 
   const loginUser = (e: React.FormEvent) => {
@@ -108,7 +117,7 @@ const Login = () => {
           >
             Continue with Github
           </button>
-          <br/>
+          <br />
           <button
             className="bg-red-500 text-white w-full rounded-full"
             onClick={() => signIn("google")}

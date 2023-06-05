@@ -3,6 +3,7 @@ import "./globals.css";
 import Provider from "./context/AuthContext";
 import ToasterContext from "./context/ToasterContext";
 import Link from "next/link";
+import SignOut from "./components/SignOut";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,9 +32,7 @@ export default function RootLayout({
             <Link href={"/register"} className="text-2xl">
               Register
             </Link>
-            <Link href={"/logout"} className="text-2xl">
-              Logout
-            </Link>
+            <SignOut />
           </div>
           {children}
         </Provider>

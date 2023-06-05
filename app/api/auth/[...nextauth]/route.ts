@@ -28,6 +28,7 @@ export const authOptions: AuthOptions = {
       credentials: {
         email: { label: "email", type: "text", placeholder: "name@email.com" },
         password: { label: "password", type: "password" },
+        username: { label: "Username", type: "text", placeholder: "John Smith" },
       },
       async authorize(credentials) {
         //check if email and password are there:
@@ -61,7 +62,7 @@ export const authOptions: AuthOptions = {
     }),
   ],
   // callbacks: {
-
+  //     async session({session})
   // },
   secret: process.env.NEXTAUTH_SECRET,
   session: {
