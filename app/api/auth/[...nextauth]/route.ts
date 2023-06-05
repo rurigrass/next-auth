@@ -43,6 +43,8 @@ export const authOptions: AuthOptions = {
         //if no user is found
         if (!user || !user?.hashedPassword) {
           throw new Error("No user found");
+          console.log('error is here');
+          
         }
 
         //check to see if password matches
@@ -60,6 +62,9 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
+  // callbacks: {
+
+  // },
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",

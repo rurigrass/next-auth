@@ -101,6 +101,21 @@ const Login = () => {
             </div>
           </form>
 
+          <h1>Sign into Github below</h1>
+          <button
+            className="bg-black text-white w-full rounded-full"
+            onClick={() => signIn("github")}
+          >
+            Sign In
+          </button>
+          <h1>Sign into Google below</h1>
+          <button
+            className="bg-red-500 text-white w-full rounded-full"
+            onClick={() => signIn("google")}
+          >
+            Sign In
+          </button>
+
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}
             <a

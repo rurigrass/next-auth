@@ -4,7 +4,6 @@ import User from "./components/User";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  console.log(session);
 
   return (
     <section>
