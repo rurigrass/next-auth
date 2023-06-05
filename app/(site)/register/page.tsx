@@ -2,6 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 type dataProps = {
   userName: string;
@@ -21,10 +22,8 @@ const Register = () => {
     e.preventDefault();
     axios
       .post("/api/register", data)
-      .then(() => alert("user has been registered"))
-      .catch(() => alert("An error has occured"));
-
-    console.log(e);
+      .then(() => toast.success("User has been registered!"))
+      .catch(() => toast.error("Something went wrong!"));
   };
 
   return (
@@ -35,10 +34,8 @@ const Register = () => {
             Register a new account
           </h2>
         </div>
-
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={registerUser}>
-  
             <div>
               <label
                 htmlFor="userName"

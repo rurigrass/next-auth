@@ -1,6 +1,7 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 type dataProps = {
   email: string;
@@ -15,9 +16,14 @@ const Login = () => {
 
   const loginUser = (e: React.FormEvent) => {
     e.preventDefault();
-    signIn("credentials", { ...data, redirect: false })
-      .then(() => alert("User has been logged in"))
-      .catch(() => Error("Error login in"));
+    signIn("credentials", { ...data, redirect: false }).then((callback) => {
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+      if (callback?.ok && !callback?.error) {
+        toast.success("Logged in successfully!");
+      }
+    });
   };
 
   return (
