@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Provider from "./context/AuthContext";
 import ToasterContext from "./context/ToasterContext";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,22 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Provider>
-          <ToasterContext /> {children}
+          <ToasterContext />
+          <div className="flex space-x-2">
+            <Link href={"/"} className="text-2xl">
+              Home
+            </Link>
+            <Link href={"/login"} className="text-2xl">
+              Login
+            </Link>
+            <Link href={"/register"} className="text-2xl">
+              Register
+            </Link>
+            <Link href={"/logout"} className="text-2xl">
+              Logout
+            </Link>
+          </div>
+          {children}
         </Provider>
       </body>
     </html>

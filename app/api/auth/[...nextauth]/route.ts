@@ -31,7 +31,7 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials) {
         //check if email and password are there:
-        if (!credentials?.email || !credentials.password) {
+        if (!credentials?.email || !credentials?.password) {
           throw new Error("Please enter email and password");
         }
 
@@ -42,9 +42,7 @@ export const authOptions: AuthOptions = {
 
         //if no user is found
         if (!user || !user?.hashedPassword) {
-          throw new Error("No user found");
-          console.log('error is here');
-          
+          throw new Error("No user found");          
         }
 
         //check to see if password matches
