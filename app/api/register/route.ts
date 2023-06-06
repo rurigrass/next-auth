@@ -2,18 +2,18 @@ import bcrypt from "bcrypt";
 import prisma from "../../libs/prismadb";
 import { NextResponse } from "next/server";
 
-export async function POST(request: any) {
+export async function POST(request: Request) {
   const body = await request.json();
-  const { userName, email, password } = body;
+  const { name, email, password } = body;
 
-  if (!userName || !email || !password) {
+  if (!name || !email || !password) {
     return new NextResponse("Missing Fields", { status: 400 });
   }
 
   const exist = await prisma.user.findUnique({
     where: {
       email,
-      // userName
+      // name
     },
   });
 
@@ -25,7 +25,7 @@ export async function POST(request: any) {
 
   const user = await prisma.user.create({
     data: {
-      userName,
+      name,
       email,
       hashedPassword,
     },

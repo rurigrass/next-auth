@@ -11,24 +11,28 @@ export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID!,
-      clientSecret: process.env.GOOGLE_SECRET!,
+      clientId: process.env.GOOGLE_ID as string,
+      clientSecret: process.env.GOOGLE_SECRET as string,
     }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: "credentials",
       // `credentials` is used to generate a form on the sign in page.
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, userName, password, 2FA token, etc.
+      // e.g. domain, name, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
         email: { label: "email", type: "text", placeholder: "name@email.com" },
         password: { label: "password", type: "password" },
-        username: { label: "Username", type: "text", placeholder: "John Smith" },
+        username: {
+          label: "Username",
+          type: "text",
+          placeholder: "John Smith",
+        },
       },
       async authorize(credentials) {
         //check if email and password are there:
@@ -43,7 +47,7 @@ export const authOptions: AuthOptions = {
 
         //if no user is found
         if (!user || !user?.hashedPassword) {
-          throw new Error("No user found");          
+          throw new Error("No user found");
         }
 
         //check to see if password matches
@@ -61,9 +65,6 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
-  // callbacks: {
-  //     async session({session})
-  // },
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",

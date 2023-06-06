@@ -1,19 +1,17 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 type dataProps = {
-  userName: string;
+  name: string;
   email: string;
   password: string;
 };
 
 const Register = () => {
-  const router = useRouter();
   const [data, setData] = useState<dataProps>({
-    userName: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -38,20 +36,20 @@ const Register = () => {
           <form className="space-y-6" onSubmit={registerUser}>
             <div>
               <label
-                htmlFor="userName"
+                htmlFor="name"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Username
+                name
               </label>
               <div className="mt-2">
                 <input
-                  id="userName"
-                  name="userName"
+                  id="name"
+                  name="name"
                   type="text"
                   required
-                  value={data.userName}
+                  value={data.name}
                   onChange={(e) =>
-                    setData({ ...data, userName: e.target.value })
+                    setData({ ...data, name: e.target.value })
                   }
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
